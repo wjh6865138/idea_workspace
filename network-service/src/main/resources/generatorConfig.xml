@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+<!-- 驱动包绝对路径,相对路径貌似找不到 -->
+    <!--<classPathEntry location="D:\wangkuo\java\BaseZXBService\WebRoot\WEB-INF\lib\mysql-connector-java-5.1.22-bin.jar" />-->
+     <!--<classPathEntry location="/Users/mark/.m2/repository/mysql/mysql-connector-java/5.1.29/mysql-connector-java-5.1.29.jar" />-->
+   <!---->
+    <!--<classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />-->
+    <classPathEntry location="/Users/cuihe/工作/淘宝游戏接入/Code/TBPlayerMS/target/TBPlayerMS/WEB-INF/lib/mysql-connector-java-5.1.29.jar" />
+
+
+    <!-- 固定格式　当前版本不变 -->
+    <context id="MYSQLTables" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.10.34:3306/wk_network" userId="root" password="123"></jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.wangkuo.zxb.coreservice.db.po" targetProject="src/main/java">
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="false"/>
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+            <!-- 给Model添加一个父类
+                property name="rootClass" value="com.foo.louis.Hello"
+            -->
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.wangkuo.zxb.coreservice.db.xml" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+
+
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+
+        <javaClientGenerator targetPackage="com.wangkuo.zxb.coreservice.db.xml" targetProject="src/main/java"-->
+                             <!--type="XML"  >-->
+           <!--<property name="enableSubPackages" value="true" />-->
+            <!--&lt;!&ndash;为生成的接口添加父接口 &ndash;&gt;-->
+            <!--<property name="rootInterface" value="com.wangkuo.zxb.coreservice.db.common.GenericDao"/>-->
+
+
+        <!--</javaClientGenerator>-->
+
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+
+        <!--<table tableName="sb_waybill_customer_track" domainObjectName="SbWaybillCustomerTrack"-->
+               <!--enableSelectByExample="false" enableDeleteByExample="false"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+        <!--</table>-->
+        <table tableName="sb_waybill" domainObjectName="SbWaybill"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false" />
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+
+    </context>
+
+
+</generatorConfiguration>
