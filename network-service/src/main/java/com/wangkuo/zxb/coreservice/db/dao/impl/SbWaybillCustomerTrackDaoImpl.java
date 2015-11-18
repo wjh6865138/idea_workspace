@@ -27,6 +27,6 @@ public class SbWaybillCustomerTrackDaoImpl extends GenericMyBatisDaoImpl<SbWaybi
 
 
         SqlSession session = getSqlSession();
-        return session.selectOne(getMapperNamespace("findBySystemId"), condition);
+        return session.selectList(getMapperNamespace("lstBySystemId"), condition);
     }
 }
