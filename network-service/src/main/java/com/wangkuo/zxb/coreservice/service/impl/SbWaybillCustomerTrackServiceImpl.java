@@ -32,8 +32,9 @@ public class SbWaybillCustomerTrackServiceImpl  implements ISbWaybillCustomerTra
         {
             //如果运单id为空，则根据运单systemId查询到哪运单
             SbWaybill sbWaybill= sbWaybillDao.findBySystemId(param.getWaybillSystemId());
-            if(sbWaybill==null) return -1;//运单不存在
-            param.setWaybillId(sbWaybill.getId());
+            if(sbWaybill!=null) {
+                param.setWaybillId(sbWaybill.getId());
+            }
         }
         SbWaybillCustomerTrack s=new SbWaybillCustomerTrack();
         s.setWaybillId(param.getWaybillId());
