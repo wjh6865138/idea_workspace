@@ -14,8 +14,8 @@ import java.util.List;
 @Repository
 public class SbCustomerVipGoodsDaoImpl extends GenericMyBatisDaoImpl<SbCustomerVipGood,Long>  implements ISbCustomerVipGoodsDao{
     @Override
-    public List<SbCustomerVipGood> getVipGoodsByDownId(String downId) {
+    public List<SbCustomerVipGood> getVipGoodsByCustomerId(Long customerId) {
         SqlSession session = getSqlSession();
-        return  session.selectList(getMapperNamespace("getVipGoodsByDownId"), downId);
+        return  session.selectList(getMapperNamespace("getVipGoodsByDownId"), customerId);
     }
 }

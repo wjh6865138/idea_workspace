@@ -7,7 +7,7 @@
     <groupId>com.wangkuo.zxb.coreservice</groupId>
     <artifactId>NetWork-Service</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 
     <modules>
         <module>network-service-api</module>

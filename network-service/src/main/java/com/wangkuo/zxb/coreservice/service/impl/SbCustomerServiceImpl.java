@@ -27,6 +27,11 @@ public class SbCustomerServiceImpl implements ISbCustomerService {
     @Override
     public int isVipByDownId(String downId) {
         SbCustomer customer = customerDao.getCustomerByDownId(downId);
+
+        if (customer == null) {
+            return 0;
+        }
+
         if (customer.getType() != null && customer.getType() == 1) {
             return 1;
         }
@@ -36,6 +41,10 @@ public class SbCustomerServiceImpl implements ISbCustomerService {
     @Override
     public int isVipById(Long id) {
         SbCustomer customer = customerDao.selectByPrimaryKey(id);
+        if (customer == null) {
+            return 0;
+        }
+
         if (customer.getType() != null && customer.getType() == 1) {
             return 1;
         }
@@ -49,6 +58,6 @@ public class SbCustomerServiceImpl implements ISbCustomerService {
         if (customer == null) {
             return Collections.emptyList();
         }
-        return vipGoodsDao.getVipGoodsByDownId(downId.trim());
+        return vipGoodsDao.getVipGoodsByCustomerId(customer.getId());
     }
 }

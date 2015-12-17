@@ -5,14 +5,14 @@
     <parent>
         <artifactId>NetWork-Service</artifactId>
         <groupId>com.wangkuo.zxb.coreservice</groupId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>network-service</artifactId>
     <packaging>war</packaging>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 
     <name>network-service Webapp</name>
     <url>http://maven.apache.org</url>

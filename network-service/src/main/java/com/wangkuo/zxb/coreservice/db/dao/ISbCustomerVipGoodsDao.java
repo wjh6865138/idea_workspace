@@ -10,10 +10,11 @@ import java.util.List;
  */
 public interface ISbCustomerVipGoodsDao extends GenericDao<SbCustomerVipGood, Long> {
     /**
-     * 根据downId 获取vip的货物列表
+     * 根据客户id 获取vip的货物列表
      *
-     * @param downId
+     * @param customerId
      * @return
      */
-    List<SbCustomerVipGood> getVipGoodsByDownId(String downId);
+    List<SbCustomerVipGood> getVipGoodsByCustomerId(Long customerId);
+
 }
