@@ -10,15 +10,13 @@ import com.wangkuo.zxb.coreservice.utils.BeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by cuihe on 15/11/17.
  */
 @Service("waybillTrackServiceFacade")
-public class WaybillTrackServiceFacadeImpl implements IWaybillTrackServiceFacade
-{
+public class WaybillTrackServiceFacadeImpl implements IWaybillTrackServiceFacade {
 
     @Autowired
     private BeanMapper beanMapper;
@@ -34,7 +32,12 @@ public class WaybillTrackServiceFacadeImpl implements IWaybillTrackServiceFacade
 
     @Override
     public List<WaybillCustomerTrackListBack> listWaybillCustomerTrack(QueryWaybillCustomerTrackParam param) {
-        List<SbWaybillCustomerTrack> lst =sbWaybillCustomerTrackService.listWaybillCustomerTrack(param);
-        return  beanMapper.mapList(lst,WaybillCustomerTrackListBack.class);
+        List<SbWaybillCustomerTrack> lst = sbWaybillCustomerTrackService.listWaybillCustomerTrack(param);
+        return beanMapper.mapList(lst, WaybillCustomerTrackListBack.class);
+    }
+
+    @Override
+    public int deleteWaybillCustomerTrack(Long id) {
+        return sbWaybillCustomerTrackService.deleteWaybillCustomerTrack(id);
     }
 }

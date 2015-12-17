@@ -5,12 +5,14 @@ import com.wangkuo.zxb.coreservice.api.data.waybilltrack.VipGoodsListBack;
 import com.wangkuo.zxb.coreservice.service.ISbCustomerService;
 import com.wangkuo.zxb.coreservice.utils.BeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by wangsy on 2015/12/16.
  */
+@Service("customerServiceFacade")
 public class SbCustomerServiceFacadeImpl implements ICustomerServiceFacade {
 
     @Autowired

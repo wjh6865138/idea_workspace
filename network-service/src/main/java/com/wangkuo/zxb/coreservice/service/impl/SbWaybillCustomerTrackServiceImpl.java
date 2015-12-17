@@ -2,7 +2,6 @@ package com.wangkuo.zxb.coreservice.service.impl;
 
 import com.wangkuo.zxb.coreservice.api.data.waybilltrack.CreateWaybillCustomerTrackParam;
 import com.wangkuo.zxb.coreservice.api.data.waybilltrack.QueryWaybillCustomerTrackParam;
-import com.wangkuo.zxb.coreservice.api.data.waybilltrack.WaybillCustomerTrackListBack;
 import com.wangkuo.zxb.coreservice.db.dao.ISbWaybillCustomerTrackDao;
 import com.wangkuo.zxb.coreservice.db.dao.ISbWaybillDao;
 import com.wangkuo.zxb.coreservice.db.po.SbWaybill;
@@ -17,7 +16,7 @@ import java.util.List;
  * Created by cuihe on 15/11/17.
  */
 @Service
-public class SbWaybillCustomerTrackServiceImpl  implements ISbWaybillCustomerTrackService{
+public class SbWaybillCustomerTrackServiceImpl implements ISbWaybillCustomerTrackService {
 
     @Autowired
     ISbWaybillDao sbWaybillDao;
@@ -28,15 +27,14 @@ public class SbWaybillCustomerTrackServiceImpl  implements ISbWaybillCustomerTra
 
     @Override
     public int createWaybillCustomerTrack(CreateWaybillCustomerTrackParam param) {
-        if(param.getWaybillId()==null)
-        {
+        if (param.getWaybillId() == null) {
             //如果运单id为空，则根据运单systemId查询到哪运单
-            SbWaybill sbWaybill= sbWaybillDao.findBySystemId(param.getWaybillSystemId());
-            if(sbWaybill!=null) {
+            SbWaybill sbWaybill = sbWaybillDao.findBySystemId(param.getWaybillSystemId());
+            if (sbWaybill != null) {
                 param.setWaybillId(sbWaybill.getId());
             }
         }
-        SbWaybillCustomerTrack s=new SbWaybillCustomerTrack();
+        SbWaybillCustomerTrack s = new SbWaybillCustomerTrack();
         s.setWaybillId(param.getWaybillId());
         s.setWaybillSystemId(param.getWaybillSystemId());
         s.setCreateName(param.getCreateName());
@@ -49,5 +47,11 @@ public class SbWaybillCustomerTrackServiceImpl  implements ISbWaybillCustomerTra
     @Override
     public List<SbWaybillCustomerTrack> listWaybillCustomerTrack(QueryWaybillCustomerTrackParam param) {
         return sbWaybillCustomerTrackDao.lstBySystemId(param);
+    }
+
+    @Override
+    public int deleteWaybillCustomerTrack(Long id) {
+        sbWaybillCustomerTrackDao.deleteByPrimaryKey(id);
+        return 1;
     }
 }

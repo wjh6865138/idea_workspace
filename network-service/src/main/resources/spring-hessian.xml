@@ -10,5 +10,11 @@
         <property name="serviceInterface" value="com.wangkuo.zxb.coreservice.api.IWaybillTrackServiceFacade"/>
     </bean>
 
+    <!-- 网点服务 -->
+    <bean name="/customerservice" class="com.wangkuo.zxb.coreservice.hessian.CustomHessianServiceExporter">
+        <property name="service" ref="customerServiceFacade"/>
+        <property name="serviceInterface" value="com.wangkuo.zxb.coreservice.api.ICustomerServiceFacade"/>
+    </bean>
+
 
 </beans>

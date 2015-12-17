@@ -6,6 +6,7 @@ import com.wangkuo.zxb.coreservice.db.po.SbCustomer;
 import com.wangkuo.zxb.coreservice.db.po.SbCustomerVipGood;
 import com.wangkuo.zxb.coreservice.service.ISbCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by wangsy on 2015/12/16.
  */
+@Service
 public class SbCustomerServiceImpl implements ISbCustomerService {
 
     @Autowired

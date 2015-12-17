@@ -23,4 +23,11 @@ public interface ISbWaybillCustomerTrackService {
 
     List<SbWaybillCustomerTrack> listWaybillCustomerTrack(QueryWaybillCustomerTrackParam param);
 
+    /**
+     * 删除运单跟踪信息
+     *
+     * @param id 跟踪id
+     * @return
+     */
+    int deleteWaybillCustomerTrack(Long id);
 }
