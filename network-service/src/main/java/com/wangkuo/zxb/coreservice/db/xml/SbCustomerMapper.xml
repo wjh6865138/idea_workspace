@@ -337,6 +337,6 @@
         select
         <include refid="Base_Column_List" />
         from sb_customer
-        where down_id = #{downId,jdbcType=BIGINT}
+        where down_id = #{downId,jdbcType=VARCHAR}
     </select>
 </mapper>

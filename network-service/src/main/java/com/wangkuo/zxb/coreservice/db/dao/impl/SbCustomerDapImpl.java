@@ -10,13 +10,11 @@ import org.springframework.stereotype.Repository;
  * Created by wangsy on 2015/12/16.
  */
 @Repository
-
 public class SbCustomerDapImpl extends GenericMyBatisDaoImpl<SbCustomer, Long> implements ISbCustomerDao {
-
 
     @Override
     public SbCustomer getCustomerByDownId(String downId) {
         SqlSession session = getSqlSession();
-        return  session.selectOne(getMapperNamespace("selectByDownId"), downId);
+        return session.selectOne(getMapperNamespace("selectByDownId"), downId);
     }
 }
