@@ -91,13 +91,12 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
         if (sbCustomerVipGoodFreePickUpIntervalDao.countByGoodIdAndPayload(goods.getId(), payload) > 0) {
             waybillFeeBack.setPickFee(BigDecimal.ZERO);
             waybillFeeBack.setDeliverFee(BigDecimal.ZERO);
+            result.setStatus(1);
         } else {
             //TODO:不存在免费区间,根据规则计算提/送费用
+            result.setStatus(-5);
         }
-
-
         result.setItem(waybillFeeBack);
-
         return result;
     }
 
