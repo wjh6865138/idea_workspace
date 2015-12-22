@@ -4,10 +4,7 @@ import com.wangkuo.zxb.coreservice.api.common.StatusAndItem;
 import com.wangkuo.zxb.coreservice.api.data.waybilltrack.WaybillFeeBack;
 import com.wangkuo.zxb.coreservice.api.data.waybilltrack.WaybillFeeParam;
 import com.wangkuo.zxb.coreservice.db.dao.*;
-import com.wangkuo.zxb.coreservice.db.po.SbCustomer;
-import com.wangkuo.zxb.coreservice.db.po.SbCustomerVipGood;
-import com.wangkuo.zxb.coreservice.db.po.SbCustomerVipRoute;
-import com.wangkuo.zxb.coreservice.db.po.SbCustomerVipRoutePrice;
+import com.wangkuo.zxb.coreservice.db.po.*;
 import com.wangkuo.zxb.coreservice.service.ISbCustomerService;
 import com.wangkuo.zxb.coreservice.service.IVipWaybillFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +82,21 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
 
         WaybillFeeBack waybillFeeBack = new WaybillFeeBack();
         waybillFeeBack.setTransportFee(routePrice.getPrice());
+
+
+        SbCustomerVipBase base = sbCustomerVipBaseDao.selectByCustomerId(customer.getId());
+        if(base != null){
+            if(base.getIsTax()!=null && base.getIsTax()==1){
+                waybillFeeBack.setIsTax(true);
+            }else {
+                waybillFeeBack.setIsTax(false);
+            }
+            if(base.getIsDepot()!=null && base.getIsDepot()==1){
+                waybillFeeBack.setIsDepot(true);
+            }else {
+                waybillFeeBack.setIsDepot(false);
+            }
+        }
 
         double payload = goods.getGoodType() == 1 ? param.getVolume() : param.getWeight();
 

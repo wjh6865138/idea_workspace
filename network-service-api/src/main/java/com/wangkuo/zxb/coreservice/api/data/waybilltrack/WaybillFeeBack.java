@@ -31,6 +31,16 @@ public class WaybillFeeBack implements Serializable {
     private BigDecimal deliverFee;
 
     /**
+     * 是否含税
+     */
+    private Boolean isTax;
+
+    /**
+     * 是否进仓
+     */
+    private Boolean isDepot;
+
+    /**
      * Getter for property 'totalFee'.
      *
      * @return Value for property 'totalFee'.
@@ -100,5 +110,21 @@ public class WaybillFeeBack implements Serializable {
      */
     public void setDeliverFee(BigDecimal deliverFee) {
         this.deliverFee = deliverFee;
+    }
+
+    public Boolean getIsTax() {
+        return isTax;
+    }
+
+    public void setIsTax(Boolean isTax) {
+        this.isTax = isTax;
+    }
+
+    public Boolean getIsDepot() {
+        return isDepot;
+    }
+
+    public void setIsDepot(Boolean isDepot) {
+        this.isDepot = isDepot;
     }
 }
