@@ -53,6 +53,6 @@ public class SbCustomerServiceFacadeImpl implements ICustomerServiceFacade {
 
     @Override
     public String getSiteDownId(String customerDownId) {
-        return null;
+        return customerService.getSiteDownId(customerDownId);
     }
 }
