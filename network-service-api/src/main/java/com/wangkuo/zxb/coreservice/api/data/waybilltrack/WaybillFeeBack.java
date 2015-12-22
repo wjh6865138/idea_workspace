@@ -40,13 +40,16 @@ public class WaybillFeeBack implements Serializable {
      */
     private Boolean isDepot;
 
+    private Integer days;
+
+
     /**
      * Getter for property 'totalFee'.
      *
      * @return Value for property 'totalFee'.
      */
     public BigDecimal getTotalFee() {
-        return totalFee;
+        return getTransportFee().add(getDeliverFee()).add(getPickFee());
     }
 
     /**
@@ -64,7 +67,7 @@ public class WaybillFeeBack implements Serializable {
      * @return Value for property 'transportFee'.
      */
     public BigDecimal getTransportFee() {
-        return transportFee;
+        return null == transportFee ? BigDecimal.ZERO : transportFee;
     }
 
     /**
@@ -82,7 +85,7 @@ public class WaybillFeeBack implements Serializable {
      * @return Value for property 'pickFee'.
      */
     public BigDecimal getPickFee() {
-        return pickFee;
+        return null == pickFee ? BigDecimal.ZERO : pickFee;
     }
 
     /**
@@ -100,7 +103,7 @@ public class WaybillFeeBack implements Serializable {
      * @return Value for property 'deliverFee'.
      */
     public BigDecimal getDeliverFee() {
-        return deliverFee;
+        return null == deliverFee ? BigDecimal.ZERO : deliverFee;
     }
 
     /**
@@ -126,5 +129,13 @@ public class WaybillFeeBack implements Serializable {
 
     public void setIsDepot(Boolean isDepot) {
         this.isDepot = isDepot;
+    }
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
     }
 }

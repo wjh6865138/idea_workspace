@@ -146,9 +146,10 @@
   </update>
 
   <select id="selectByCustomerAndGoods" resultMap="BaseResultMap" parameterType="java.util.HashMap">
-    <![CDATA[
+
     select
     <include refid="Base_Column_List" />
+    <![CDATA[
     from sb_customer_vip_route_price
     where vip_route_id = #{vipRouteId,jdbcType=BIGINT}
     and customer_id = #{customerId,jdbcType=BIGINT}

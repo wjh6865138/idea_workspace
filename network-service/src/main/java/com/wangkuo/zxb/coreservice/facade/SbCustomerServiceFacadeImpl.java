@@ -47,7 +47,6 @@ public class SbCustomerServiceFacadeImpl implements ICustomerServiceFacade {
 
     @Override
     public StatusAndItem<WaybillFeeBack> calculateWaybillFee(WaybillFeeParam param) {
-
         return vipWaybillFeeService.calculateWaybillFee(param);
     }
 

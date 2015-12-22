@@ -184,5 +184,8 @@
     <if test="countryId != null">
       AND end_country_id = #{countryId,jdbcType=BIGINT}
     </if>
+    <if test="countryId == null">
+      AND (end_country_id IS NULL OR end_country_id = 0)
+    </if>
   </select>
 </mapper>

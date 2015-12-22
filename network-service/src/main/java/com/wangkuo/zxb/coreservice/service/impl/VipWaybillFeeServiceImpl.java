@@ -83,17 +83,21 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
         WaybillFeeBack waybillFeeBack = new WaybillFeeBack();
         waybillFeeBack.setTransportFee(routePrice.getPrice());
 
+        routePrice.getVipRouteId();
+
+        SbCustomerVipRoute customerVipRoute = sbCustomerVipRouteDao.selectByPrimaryKey(routePrice.getVipRouteId());
+        waybillFeeBack.setDays(customerVipRoute.getHoursLimit());
 
         SbCustomerVipBase base = sbCustomerVipBaseDao.selectByCustomerId(customer.getId());
-        if(base != null){
-            if(base.getIsTax()!=null && base.getIsTax()==1){
+        if (base != null) {
+            if (base.getIsTax() != null && base.getIsTax() == 1) {
                 waybillFeeBack.setIsTax(true);
-            }else {
+            } else {
                 waybillFeeBack.setIsTax(false);
             }
-            if(base.getIsDepot()!=null && base.getIsDepot()==1){
+            if (base.getIsDepot() != null && base.getIsDepot() == 1) {
                 waybillFeeBack.setIsDepot(true);
-            }else {
+            } else {
                 waybillFeeBack.setIsDepot(false);
             }
         }
@@ -126,14 +130,14 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
         SbCustomerVipRoutePrice routePrice = null;
 
         List<SbCustomerVipRoute> allRoutes = new LinkedList<>();
-        List<SbCustomerVipRoute> vipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId(), param.getEndCountyId());
-        allRoutes.addAll(vipRoutes);
+        List<SbCustomerVipRoute> countyVipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId(), param.getEndCountyId());
+        allRoutes.addAll(countyVipRoutes);
 
-        vipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId());
-        allRoutes.addAll(vipRoutes);
+        List<SbCustomerVipRoute> cityVipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId());
+        allRoutes.addAll(cityVipRoutes);
 
-        if (null != vipRoutes && !vipRoutes.isEmpty()) {
-            for (SbCustomerVipRoute vipRoute : vipRoutes) {
+        if (null != allRoutes && !allRoutes.isEmpty()) {
+            for (SbCustomerVipRoute vipRoute : allRoutes) {
                 routePrice = sbCustomerVipRoutePriceDao.selectByCustomerAndGoods(customer.getId(), vipRoute.getId(), goods.getGoodType(), payload);
                 if (null != routePrice) {
                     break;
