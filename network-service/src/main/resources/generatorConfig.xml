@@ -9,7 +9,8 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
      <!--<classPathEntry location="/Users/mark/.m2/repository/mysql/mysql-connector-java/5.1.29/mysql-connector-java-5.1.29.jar" />-->
    <!---->
     <!--<classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />-->
-    <classPathEntry location="/Users/cuihe/工作/淘宝游戏接入/Code/TBPlayerMS/target/TBPlayerMS/WEB-INF/lib/mysql-connector-java-5.1.29.jar" />
+    <!--<classPathEntry location="/Users/cuihe/工作/淘宝游戏接入/Code/TBPlayerMS/target/TBPlayerMS/WEB-INF/lib/mysql-connector-java-5.1.29.jar" />-->
+    <classPathEntry location="E:\myworkspace\SXXLZXBClientService\WebRoot\WEB-INF\lib\mysql-connector-java-5.1.25-bin.jar" />
 
 
     <!-- 固定格式　当前版本不变 -->
@@ -68,13 +69,19 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
             <!--<property name="useActualColumnNames" value="false" />-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
         <!--</table>-->
-        <table tableName="sb_waybill" domainObjectName="SbWaybill"
+        <!--<table tableName="sb_waybill" domainObjectName="SbWaybill"-->
+               <!--enableSelectByExample="false" enableDeleteByExample="false"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+        <!--</table>-->
+
+        <table tableName="zb_site" domainObjectName="ZbSite"
                enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false">
             <property name="useActualColumnNames" value="false" />
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
         </table>
-
 
     </context>
 

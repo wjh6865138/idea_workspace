@@ -57,4 +57,11 @@ public interface ISbCustomerService {
      */
     SbCustomerVipBase getVipBaseByCustomerId(Long customerId);
 
+    /**
+     * 通过客户downId得到网点downId
+     * @param customerDownId
+     * @return
+     */
+    String getSiteDownId(String customerDownId);
+
 }

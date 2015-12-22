@@ -50,4 +50,9 @@ public class SbCustomerServiceFacadeImpl implements ICustomerServiceFacade {
 
         return vipWaybillFeeService.calculateWaybillFee(param);
     }
+
+    @Override
+    public String getSiteDownId(String customerDownId) {
+        return null;
+    }
 }

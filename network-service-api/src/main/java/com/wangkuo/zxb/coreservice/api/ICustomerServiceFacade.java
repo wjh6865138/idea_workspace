@@ -43,4 +43,11 @@ public interface ICustomerServiceFacade {
      * @return
      */
     StatusAndItem<WaybillFeeBack> calculateWaybillFee(WaybillFeeParam param);
+
+    /**
+     * 通过客户downId得到网点downId
+     * @param customerDownId
+     * @return
+     */
+    String getSiteDownId(String customerDownId);
 }
