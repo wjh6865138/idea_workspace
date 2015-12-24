@@ -131,8 +131,8 @@
       sb_customer_vip_good_freepickup_interval
     WHERE
       vip_good_id = #{vipGoodId,jdbcType=BIGINT}
-      AND  #{payload,jdbcType=REAL} > begin_sec
-      AND  #{payload,jdbcType=REAL} <= end_sec
+      AND  #{payload,jdbcType=REAL} >= begin_sec
+      AND  #{payload,jdbcType=REAL} < end_sec
     ]]>
   </select>
 </mapper>

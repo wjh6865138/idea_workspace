@@ -154,8 +154,8 @@
     where vip_route_id = #{vipRouteId,jdbcType=BIGINT}
     and customer_id = #{customerId,jdbcType=BIGINT}
     and good_type = #{goodType,jdbcType=INTEGER}
-    and #{payload,jdbcType=REAL} > begin_sec
-    and #{payload,jdbcType=REAL} <= end_sec
+    and #{payload,jdbcType=REAL} >= begin_sec
+    and #{payload,jdbcType=REAL} < end_sec
     ]]>
   </select>
 </mapper>
