@@ -66,7 +66,7 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
 
 
         SbCustomerVipGood goods = sbCustomerVipGoodsDao.selectByPrimaryKey(param.getVipGoodId());
-        if (null == goods && !goods.getCustomerId().equals(customer.getId())) {
+        if (null == goods || !goods.getCustomerId().equals(customer.getId())) {
             //货物不存在
             result.setStatus(-3);
             return result;

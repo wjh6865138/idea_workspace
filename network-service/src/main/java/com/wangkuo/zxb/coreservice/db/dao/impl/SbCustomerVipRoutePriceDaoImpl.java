@@ -21,7 +21,7 @@ public class SbCustomerVipRoutePriceDaoImpl extends GenericMyBatisDaoImpl<SbCust
     public SbCustomerVipRoutePrice selectByCustomerAndGoods(Long customerId, Long vipRouteId, Integer goodType, Double payload) {
         Map<String, Object> map = new HashMap<>();
         map.put("customerId", customerId);
-        map.put("vipRouteId", customerId);
+        map.put("vipRouteId", vipRouteId);
         map.put("goodType", goodType);
         map.put("payload", payload);
 
