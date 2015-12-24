@@ -72,13 +72,13 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
             return result;
         }
 
-        SbCustomerVipRoutePrice routePrice = findVipRoutePrice(param, customer, goods);
-        if (null == routePrice) {
-            //没有价格
-            result.setStatus(-4);
+        StatusAndItem<SbCustomerVipRoutePrice> statusAndItem = findVipRoutePrice(param, customer, goods);
+        if (statusAndItem.getStatus() != 1) {
+            //没有价格-6,没有线路-4
+            result.setStatus(statusAndItem.getStatus());
             return result;
         }
-
+        SbCustomerVipRoutePrice routePrice = statusAndItem.getItem();
 
         WaybillFeeBack waybillFeeBack = new WaybillFeeBack();
         waybillFeeBack.setTransportFee(routePrice.getPrice());
@@ -124,10 +124,11 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
      * @param goods
      * @return
      */
-    private SbCustomerVipRoutePrice findVipRoutePrice(WaybillFeeParam param, SbCustomer customer, SbCustomerVipGood goods) {
+    private StatusAndItem<SbCustomerVipRoutePrice> findVipRoutePrice(WaybillFeeParam param, SbCustomer customer, SbCustomerVipGood goods) {
         double payload = goods.getGoodType() == 1 ? param.getVolume() : param.getWeight();
 
-        SbCustomerVipRoutePrice routePrice = null;
+        StatusAndItem<SbCustomerVipRoutePrice> statusAndItem = new StatusAndItem<>();
+        SbCustomerVipRoutePrice price = new SbCustomerVipRoutePrice();
 
         List<SbCustomerVipRoute> allRoutes = new LinkedList<>();
         List<SbCustomerVipRoute> countyVipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId(), param.getEndCountyId());
@@ -138,13 +139,22 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
 
         if (null != allRoutes && !allRoutes.isEmpty()) {
             for (SbCustomerVipRoute vipRoute : allRoutes) {
-                routePrice = sbCustomerVipRoutePriceDao.selectByCustomerAndGoods(customer.getId(), vipRoute.getId(), goods.getGoodType(), payload);
-                if (null != routePrice) {
+                price = sbCustomerVipRoutePriceDao.selectByCustomerAndGoods(customer.getId(), vipRoute.getId(), goods.getGoodType(), payload);
+                if (null != price) {
                     break;
                 }
             }
+            if(price.getId() == null){
+                //没有价格
+                statusAndItem.setStatus(-6);
+            }else {
+                statusAndItem.setStatus(1);
+                statusAndItem.setItem(price);
+            }
+        }else {
+            //没有线路
+            statusAndItem.setStatus(-4);
         }
-
-        return routePrice;
+        return statusAndItem;
     }
 }
