@@ -80,9 +80,9 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
         }
         SbCustomerVipRoutePrice routePrice = statusAndItem.getItem();
         BigDecimal transportFee = BigDecimal.ZERO;
-        if(routePrice.getGoodType() == 1){
+        if (routePrice.getGoodType() == 1) {
             transportFee = routePrice.getPrice().multiply(new BigDecimal(param.getVolume()));
-        }else {
+        } else {
             transportFee = routePrice.getPrice().multiply(new BigDecimal(param.getWeight()));
         }
 
@@ -134,7 +134,7 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
         double payload = goods.getGoodType() == 1 ? param.getVolume() : param.getWeight();
 
         StatusAndItem<SbCustomerVipRoutePrice> statusAndItem = new StatusAndItem<>();
-        SbCustomerVipRoutePrice price = new SbCustomerVipRoutePrice();
+        SbCustomerVipRoutePrice price = null;
 
         List<SbCustomerVipRoute> allRoutes = new LinkedList<>();
         List<SbCustomerVipRoute> countyVipRoutes = sbCustomerVipRouteDao.selectByCustomerAndArea(customer.getId(), param.getEndProvinceId(), param.getEndCityId(), param.getEndCountyId());
@@ -150,14 +150,14 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
                     break;
                 }
             }
-            if(price.getId() == null){
+            if (price == null) {
                 //没有价格
                 statusAndItem.setStatus(-6);
-            }else {
+            } else {
                 statusAndItem.setStatus(1);
                 statusAndItem.setItem(price);
             }
-        }else {
+        } else {
             //没有线路
             statusAndItem.setStatus(-4);
         }
