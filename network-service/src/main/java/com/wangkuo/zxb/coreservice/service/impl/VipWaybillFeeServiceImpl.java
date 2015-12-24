@@ -79,9 +79,15 @@ public class VipWaybillFeeServiceImpl implements IVipWaybillFeeService {
             return result;
         }
         SbCustomerVipRoutePrice routePrice = statusAndItem.getItem();
+        BigDecimal transportFee = BigDecimal.ZERO;
+        if(routePrice.getGoodType() == 1){
+            transportFee = routePrice.getPrice().multiply(new BigDecimal(param.getVolume()));
+        }else {
+            transportFee = routePrice.getPrice().multiply(new BigDecimal(param.getWeight()));
+        }
 
         WaybillFeeBack waybillFeeBack = new WaybillFeeBack();
-        waybillFeeBack.setTransportFee(routePrice.getPrice());
+        waybillFeeBack.setTransportFee(transportFee);
 
         routePrice.getVipRouteId();
 
